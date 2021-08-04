@@ -1,0 +1,6 @@
+2020-05-30T13:03,Beijing,China
+2020-05-30T13:04,Kabul,Afghanistan
+2020-05-30T13:05,Kampala,Uganda
+2020-05-30T13:06,Ottawa,Canada
+2020-05-30T13:07,Apia,Samoa
+2020-05-30T13:08,Brasilia,Brazil

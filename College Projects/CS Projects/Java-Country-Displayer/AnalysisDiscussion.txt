@@ -1,0 +1,9 @@
+This is a difficult project for me, and it took me a long time to figure out the number of objects and methods I need and what each of them does. I discussed with my collaborative learning group on Friday and it was really helpful. It helped me understand the use of indicators in this project, and everything just started to connect together. 
+
+When I try to see the total population ranking from greatest to least, it gives out results not as individual countries but as general areas such as "world", "East Asia", and etc. I am not sure if we need to take those out, but I also do not know how to. It might require a lot of work to identify and eliminate them one by one. 
+
+One of my group mates also mentioned about the scale of bars in the barplot being too different. If one data value is high and the other is too small, the small one might be hard to see on the graph. 
+
+We tried to see if there is a corelation between access to electricity and population growth,and we hypothesized that growing population would be associated with growing access to electricity. But unfortunately, the scales of two barcharts are too different. The graph of population growth is too small to see, so we cannot draw a conclusion. 
+
+We also tried to see if there is a correlation between urban population growth and co2 emission, and we thought higher urban population growth would be associated with higher co2 emission. But the barcharts do not demonstrate any trend. I found out that Qatar actually has the highest co2 emission per capita in the world. I am not sure if it is due to oil plantations or some other confounding variables. 
