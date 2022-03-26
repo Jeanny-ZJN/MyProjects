@@ -1,0 +1,13 @@
+name: alcohol_consumption
+title: alcohol_consumption
+username:
+account: zhangj8
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5864185
+bundleId: 5690048
+url: https://zhangj8.shinyapps.io/alcohol_consumption/
+when: 1647415518.48667
+lastSyncTime: 1647415518.48668
+asMultiple: FALSE
+asStatic: FALSE
