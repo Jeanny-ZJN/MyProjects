@@ -5,4 +5,4 @@ This is the senior capstone project for my statistics major at Carleton College.
 
 Workflow: 
 
-![Project Workflow](comps_flowchart.png = 250x250)
+<img src="https://github.com/Jeanny-ZJN/MyProjects/blob/main/College%20Projects/Stats%20Senior%20Capstone/comps_flowchart.png" width="50%" height="50%">
