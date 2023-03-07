@@ -5,6 +5,4 @@ This is the senior capstone project for my statistics major at Carleton College.
 
 Workflow: 
 
-<div style="width:60%; height:60%">
-![Project Workflow](comps_flowchart.png)
-<div>
+![Project Workflow](comps_flowchart.png = 250x250)
