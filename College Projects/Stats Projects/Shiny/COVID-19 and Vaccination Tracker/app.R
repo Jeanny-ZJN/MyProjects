@@ -37,9 +37,9 @@ coronavirus_trend_asia <- coronavirus %>%
 
 vaccination_trend_asia <- covid19_vaccine %>% 
   filter(continent_name == "Asia") %>% 
-  mutate(people_fully_vaccinated = people_fully_vaccinated/population) %>% 
-  select(country_region, date, people_fully_vaccinated) %>% 
-  filter(between(people_fully_vaccinated, 0, 1))
+  mutate(people_at_least_one_dose = people_at_least_one_dose/population) %>% 
+  select(country_region, date, people_at_least_one_dose) %>% 
+  filter(between(people_at_least_one_dose, 0, 1))
 
 # create a vector of asian countries' names
 asian_countries <- coronavirus %>%
@@ -68,8 +68,8 @@ ui <- bootstrapPage(
          sliderInput(inputId = "date_range",
                      label = "Select date:",
                      min = as.Date(min(coronavirus_trend_asia$date), "%Y-%m-%d"),
-                     max = as.Date(max(coronavirus_trend_asia$date), "%Y-%m-%d"),
-                     value = c(as.Date(min(coronavirus_trend_asia$date), "%Y-%m-%d"), as.Date(max(coronavirus_trend_asia$date), "%Y-%m-%d"))
+                     max = as.Date("2022-02-07"),
+                     value = c(as.Date(min(coronavirus_trend_asia$date), "%Y-%m-%d"), as.Date("2022-02-07"))
                      ),
        ),
        mainPanel(
@@ -84,7 +84,7 @@ ui <- bootstrapPage(
     tabPanel("Cases Map",
       sidebarLayout(
         sidebarPanel(
-          dateInput("map_date", label = "Select date", value = max(coronavirus_trend_asia$date), min = min(coronavirus_trend_asia$date), max = max(coronavirus_trend_asia$date)),
+          dateInput("map_date", label = "Select date", value = as.Date("2022-02-07"), min = min(coronavirus_trend_asia$date), max = as.Date("2022-02-07")),
           h5("For Vaccination rates, due to insufficient data, the minimum date is set as 2021-01-04")
         ),
         mainPanel(
@@ -130,9 +130,9 @@ server <- function(input, output) {
       filter(country_region %in% input$regions) %>% 
       filter(date >= input$date_range[1] & date <= input$date_range[2])
     
-    filtered_df$tooltip <- str_c("Region = ", str_to_upper(filtered_df$country_region), "\n Date =", as.character(filtered_df$date), "\n Vaccination Rate =", filtered_df$people_fully_vaccinated)
+    filtered_df$tooltip <- str_c("Region = ", str_to_upper(filtered_df$country_region), "\n Date =", as.character(filtered_df$date), "\n Vaccination Rate =", filtered_df$people_at_least_one_dose)
     
-    girafe_plot <- ggplot(filtered_df, aes(x = date, y = people_fully_vaccinated)) +
+    girafe_plot <- ggplot(filtered_df, aes(x = date, y = people_at_least_one_dose)) +
       geom_line_interactive(aes(colour = country_region), size = 1, alpha = 0.5) +
       geom_point_interactive(aes(colour = country_region, tooltip = tooltip), size = 1) +
       theme_minimal() +
@@ -187,15 +187,15 @@ server <- function(input, output) {
         filter(date == use_date) %>% 
         left_join(asia_map, by = c("country_region" = "region"))
       
-      asia_vaccination$tooltip <- str_c("Country = ", str_to_upper(asia_vaccination$country_region), "\n % Fully Vaccinated =", asia_vaccination$people_fully_vaccinated)
+      asia_vaccination$tooltip <- str_c("Country = ", str_to_upper(asia_vaccination$country_region), "\n % Fully Vaccinated =", asia_vaccination$people_at_least_one_dose)
       
       map <- asia_vaccination %>%
-        select(country_region, people_fully_vaccinated, long, lat, group, tooltip) %>%
+        select(country_region, people_at_least_one_dose, long, lat, group, tooltip) %>%
         na.omit() %>%
         ggplot(aes(long, lat, group = group)) + coord_map() + theme_map() +
-        geom_polygon_interactive(aes(fill = people_fully_vaccinated,
+        geom_polygon_interactive(aes(fill = people_at_least_one_dose,
                                      tooltip = tooltip, 
-                                     data_id = people_fully_vaccinated)) +
+                                     data_id = people_at_least_one_dose)) +
         guides(fill=guide_legend(title="Percent of Fully Vaccination")) + 
         scale_fill_gradientn(colours = terrain.colors(10)) + 
         theme(legend.position = "right") +

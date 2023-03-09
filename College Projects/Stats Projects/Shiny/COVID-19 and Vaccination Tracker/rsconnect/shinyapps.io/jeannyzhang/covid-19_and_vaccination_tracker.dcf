@@ -1,0 +1,11 @@
+name: covid-19_and_vaccination_tracker
+title:
+username:
+account: jeannyzhang
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8519520
+bundleId: 6934002
+url: https://jeannyzhang.shinyapps.io/covid-19_and_vaccination_tracker/
+when: 1678326846.91382
+lastSyncTime: 1678326846.91388
